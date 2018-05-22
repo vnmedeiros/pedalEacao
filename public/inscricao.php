@@ -54,6 +54,7 @@
         
         <!-- ____________________GRID ______________________________-->
         <div class="allcontain">
+			<?php if ($evento == 1): ?>
             <div class="feturedsection">
                 <h1 class="text-center">1º Desafio XCM MTB</h1>                
             </div>  
@@ -103,6 +104,61 @@
                     </div>
                 </div>
             </div>
+            <?php endif; ?>
+            <?php if ($evento == 2): ?>
+            <div class="feturedsection">
+                <h1 class="text-center">II Desafio Dubai</h1>                
+            </div>  
+            <div class="featurecontant" style="margin-top: 2%;">
+                <div class="row firstrow">   
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 costumcol colborder1 img1colon">
+                        <img src="image/events/event_dubai/event_detalhes.jpg" />
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 costumcol colborder1">
+                        <div style="margin-left: 25px;">                            
+                            <h3 class="text-center">II Desafio Dubai</h3>
+                            <p>
+                            <b>Local:</b> Baianópolis - BA <br>
+                            <b>Data:</b> 29 de julho 2018 <br>
+                            <b>Categorias:</b>
+                                <ul>
+                                    <li>Masculino Elite: 19 anos acima</li>
+									<li>Feminino Elite: 19 acima</li>
+									<li>Júnior: Masculino entre 15 a 18 anos</li>
+									<li>Sub-30: Masculino entre 23 e 29</li>
+									<li>Máster A1: Masculino entre 30 e 34 anos</li>
+									<li>Máster A2: Masculino entre 35 e 39 anos</li>
+									<li>Máster B1: Masculino entre 40 e 44 anos</li>
+									<li>Master B2: Masculino entre 45 e 49 anos</li>
+									<li>Máster C1: Masculino entre 50 á 54 anos acima</li>
+									<li>Máster C2: Masculino entre 55 anos</li>
+									<li>Máster GG: Masculino com 19 anos acima de 100 kg</li>
+									<li>Dupla mista: Homens e mulheres com 19 anos acima</li>
+									<li>Dupla masculina: Homens com 19 anos acima</li>
+									<li>Turismo Masculino: Masculino 15 anos acima</li>
+									<li>Turismo Feminino: Feminino 15 anos acima</li>
+                                </ul>
+                            <br>
+                            <br>
+                            <br>
+                            </p>
+                            <b>Valor:</b>                            
+                            <p>                                
+								1º lote <b>R$ 80,00</b> até 24/06/2018.<br />
+								2º lote <b>R$ 90,00</b> de 25/06/2018 á 25/07/2018.<br />
+								3º lote <b>R$ 100,00</b> de 26 á 28/07/2018 até meio dia.<br />
+                            </p><br />
+							<p>
+                                <b style="color:#ff3300;">INSCRIÇÕES FINALIZAM EM 22/07/2018</b> <br />
+								Informações: (77) x xxxx-xxxx
+							</p>
+                            <!-- Trigger the modal with a button -->                            
+                        </div>                                  
+                    </div>
+                </div>
+            </div>
+            <?php endif; ?>
+            
          
             
             
@@ -145,7 +201,7 @@
 
         <script type="text/javascript" src="source/js/jquery.mask.min.js"></script>
         
-        <script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>-->
+        <script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
         <!--<script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>-->
 
     </body>
