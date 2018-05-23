@@ -67,7 +67,7 @@ $('#btnRL2').click(function(){
 	$('#readmore2').animate({height:'0px'}, 500);
 });
 
-	$(function () {
+$(function () {
   $("#mydd a").on('click',function (e) {
   	e.preventDefault();
     $("#dropdownMenu1").html($(this).html() + ' <span class="downicon"></span>');
@@ -108,7 +108,7 @@ $(document).ready(function () {
     
     $('form[data-async]#form-cadastro').on('submit', function(event) {
         var $form = $(this);
-        $(".loading-panel").css('visibility', 'visible');        
+        $(".loading-panel").css('visibility', 'visible');
 
         $.ajax({
             type: $form.attr('method'),
@@ -141,12 +141,13 @@ $(document).ready(function () {
             data: $form.serialize(),
 
             success: function(data, status) {
-				if (data.success) {					
+				if (data.success) {
 					var $active = $('.wizard .nav-tabs li.active');
 					$active.next().removeClass('disabled');
 					nextTab($active);
-                    preparamentPagSeguro(data);
-                    $('#idInscricao').val(data.inscricao.id);					
+                    preparamentMoip(data);
+                    //preparamentPagSeguro(data);
+                    $('#idInscricao').val(data.inscricao.id);
                 } else {
 					
 				}
@@ -242,17 +243,23 @@ $(document).ready(function () {
     });
 });
 
+function preparamentMoip(data) {
+    $('#formaPagamento').empty();
+    var op = '<label><input type="radio" name="boleto" value="boleto" checked="checked"/><img src="./image/boleto.jpg" style="width: 50px;"></label>';
+    $('#formaPagamento').prepend(op);
+    $(".loading-panel").css('visibility', 'hidden');
+}
 
 function preparamentPagSeguro(data) {
-    urlSession = "./public/API/getSessionPagSeguro";    
+    urlSession = "./API/getSessionPagSeguro";
     $.ajax({
         type: "GET",
-        url: urlSession,         
+        url: urlSession,
         success: function(result) {
             xmlDoc = $.parseXML( result ), $xml = $(xmlDoc), $idSession = $xml.find( "id" ).text();
             PagSeguroDirectPayment.setSessionId($idSession);            
             $('#SenderHash').val(PagSeguroDirectPayment.getSenderHash());
-            PagSeguroDirectPayment.getPaymentMethods({                
+            PagSeguroDirectPayment.getPaymentMethods({
                 success: function(response) {
                     $('#formaPagamento').empty();
                     var op = '<label><input type="radio" name="boleto" value="boleto" checked="checked"/><img src="https://stc.pagseguro.uol.com.br'+response.paymentMethods.BOLETO.options.BOLETO.images.MEDIUM.path+'"></label>';
@@ -275,13 +282,13 @@ function prevTab(elem) {
     $(elem).prev().find('a[data-toggle="tab"]').click();
 }
 function getCategorias(idEvento) {
-	$.ajax({url: "./public/API/evento/categorias/" + idEvento, success: function(result) {
+	$.ajax({url: "./API/evento/categorias/" + idEvento, success: function(result) {
 		//$('#selectCategoria').empty();
-        $.each($.parseJSON(result), function(i, item) {            
+        $.each($.parseJSON(result), function(i, item) {
 			$('#selectCategoria').append($('<option>', {
 				value: item.id,
 				text: item.descricao
 			}));
-		});        
+		});
     }});
 }

@@ -73,7 +73,7 @@ $app->post('/evento/inscricao', function (Request $request, Response $response) 
         $idEvento = filter_var($data['idEvento'], FILTER_SANITIZE_STRING);
         $idCadastro = filter_var($data['idCadastro'], FILTER_SANITIZE_STRING);
         $idCategoria = filter_var($data['selectCategoria'], FILTER_SANITIZE_STRING);
-        $base = new EventoDAO($this->db);           
+        $base = new EventoDAO($this->db);
                 
         $ins = ['success' => true, 
                 'inscricao' => ['id' => $base->inscrever($idCadastro, $idCategoria),

@@ -25,7 +25,7 @@
 
     <body>
         <!-- Header -->
-        <div class="allcontain">            
+        <div class="allcontain">
             <!-- Navbar Up -->
             <nav class="topnavbar navbar-default topnav">
                 <div class="container">
@@ -37,7 +37,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand logo" href="#"><img src="image/logo1.png" alt="logo"></a>
-                    </div>	 
+                    </div>
                 </div>
                 <div class="collapse navbar-collapse" id="upmenu">
                     <ul class="nav navbar-nav" id="navbarontop">
@@ -56,8 +56,8 @@
         <div class="allcontain">
 			<?php if ($evento == 1): ?>
             <div class="feturedsection">
-                <h1 class="text-center">1º Desafio XCM MTB</h1>                
-            </div>  
+                <h1 class="text-center">1º Desafio XCM MTB</h1>
+            </div>
             <div class="featurecontant" style="margin-top: 2%;">
                 <div class="row firstrow">   
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 costumcol colborder1 img1colon">
@@ -90,8 +90,8 @@
                             Categoria Turismo Premiação em dinheiro, troféu e medalha para do 1º ao 5º, brindes do 6º ao 10º. <br>
                             15.000,00 em premiação <br>
                             </p>
-                            <b>Valor:</b>                            
-                            <p>                                
+                            <b>Valor:</b>
+                            <p>
                                 1º lote <b>70,00 R$</b> até 31 de dezembro de 2017<br />
                                 2º lote <b>80,00 R$</b> a partir de janeiro de 2018.<br />
                             </p><br />
@@ -99,15 +99,15 @@
                                 <b style="color:#ff3300;">INSCRIÇÕES FINALIZAM EM 25/01/2018</b> <br />
 								Informações: (77) 9 9141-9900
 							</p>
-                            <!-- Trigger the modal with a button -->                            
-                        </div>                                  
+                            <!-- Trigger the modal with a button -->
+                        </div>
                     </div>
                 </div>
             </div>
             <?php endif; ?>
             <?php if ($evento == 2): ?>
             <div class="feturedsection">
-                <h1 class="text-center">II Desafio Dubai</h1>                
+                <h1 class="text-center">II Desafio Dubai</h1>
             </div>  
             <div class="featurecontant" style="margin-top: 2%;">
                 <div class="row firstrow">   
@@ -115,7 +115,7 @@
                         <img src="image/events/event_dubai/event_detalhes.jpg" />
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 costumcol colborder1">
-                        <div style="margin-left: 25px;">                            
+                        <div style="margin-left: 25px;">
                             <h3 class="text-center">II Desafio Dubai</h3>
                             <p>
                             <b>Local:</b> Baianópolis - BA <br>
@@ -142,8 +142,8 @@
                             <br>
                             <br>
                             </p>
-                            <b>Valor:</b>                            
-                            <p>                                
+                            <b>Valor:</b>
+                            <p>
 								1º lote <b>R$ 80,00</b> até 24/06/2018.<br />
 								2º lote <b>R$ 90,00</b> de 25/06/2018 á 25/07/2018.<br />
 								3º lote <b>R$ 100,00</b> de 26 á 28/07/2018 até meio dia.<br />
@@ -162,15 +162,15 @@
             
          
             <!-- Modal -->
-			<div id="myModal" class="modal fade" role="dialog">				
+			<div id="myModal" class="modal fade" role="dialog">
 				<div class="modal-dialog">
                     <div class="loading-panel">
                         <div class="loading-panel-content">
                             Aguarde...
-                        </div>                            
+                        </div>
 				    </div>
 					<!-- Modal content-->
-					<div class="modal-content">						
+					<div class="modal-content">
 						<div class="modal-body" style="margin:5px; min-height:400px;">
 							<div class="wizard">
 								<div class="wizard-inner">
@@ -201,8 +201,8 @@
 											</li>
 										</ul>
 									</div>
-								</div>							
-							
+								</div>
+
 								<div class="tab-content">
 									<div class="tab-pane active" role="tabpanel" id="step1">
 										<form method="POST" data-async action="./API/cadastro" class="form-horizontal formIscricao" id="form-cadastro">
@@ -306,9 +306,8 @@
 											</div>
 										</form>
 									</div>
-									
 									<div class="tab-pane" role="tabpanel" id="step2">
-										<form method="POST" data-async action="./public/API/evento/inscricao" class="form-horizontal formIscricaoCategoria" id="form-cadastroCategoria">
+										<form method="POST" data-async action="./API/evento/inscricao" class="form-horizontal formIscricaoCategoria" id="form-cadastroCategoria">
 											<div style="min-height:200px;">
 												<label for="selectCategoria">Selecionar a categoria desejada:</label>
 												<select class="form-control" id="selectCategoria" name="selectCategoria">
@@ -318,16 +317,17 @@
 											</div>
 											<ul class="list-inline pull-right">
 												<li><button type="button" class="btn btn-default prev-step">Retornar</button></li>
-												<li><button type="submit" class="btn btn-primary next-step" form="form-cadastroCategoria">Avançar</button></li>                                                
-											</ul>							
-										</form>	
+												<li><button type="submit" class="btn btn-primary next-step" form="form-cadastroCategoria">Avançar</button></li>
+											</ul>
+										</form>
 									</div>
 									
-									<div class="tab-pane" role="tabpanel" id="step3">                                            
+									<div class="tab-pane" role="tabpanel" id="step3">
 										<h3>Forma de pagamento!</h3>
-                                        <form method="POST" data-async action="./public/API/finalizarInscricao" class="form-horizontal formFinalizarIscricao" id="form-finalizarIscricao">
+                                        <!--<form method="POST" data-async action="./API/finalizarInscricao" class="form-horizontal formFinalizarIscricao" id="form-finalizarIscricao">-->
+                                        <form method="POST" data-async action="./API/moip/boleto" class="form-horizontal formFinalizarIscricao" id="form-finalizarIscricao">
                                             <div id="conteudoFormFinalizarInscricao">
-                                                <div id="formaPagamento">                                            
+                                                <div id="formaPagamento">
                                                 </div>
                                                 <input type="hidden" name="idInscricao" id="idInscricao">
                                                 <input type="hidden" name="SenderHash" id="SenderHash">
@@ -340,7 +340,7 @@
 									</div>
 								</div>
 							</div>
-						</div>						
+						</div>
 					</div>
 				</div>
 			</div>

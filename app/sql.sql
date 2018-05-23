@@ -12,7 +12,7 @@ CREATE TABLE `cadastro` (
  `UF` char(2) DEFAULT NULL,
  PRIMARY KEY (`id`),
  UNIQUE KEY `unq_cadastroCPF` (`CPF`)
-) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `evento` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -21,7 +21,7 @@ CREATE TABLE `evento` (
  `data_evento` date DEFAULT NULL,
  `limite_inscricao` date DEFAULT NULL,
  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `categoria` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -43,5 +43,5 @@ CREATE TABLE `cadastro_evento` (
  KEY `fk_cadastroEvento_categoria` (`id_categoria`),
  CONSTRAINT `fk_cadastroEvento_cadastro` FOREIGN KEY (`id_cadastro`) REFERENCES `cadastro` (`id`),
  CONSTRAINT `fk_cadastroEvento_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=231 DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=231 DEFAULT CHARSET=utf8;
 
