@@ -39,10 +39,10 @@ $app->post('/cadastro', function (Request $request, Response $response) {
 $app->get('/cadastros/cpf/{cpf}', function (Request $request, Response $response, $args) {
     try {
         $cpf = $args['cpf'];
-        $base = new CadastroDAO($this->db);        
+		$base = new CadastroDAO($this->db);
         $response->withStatus(200)->withHeader('Content-Type', 'application/json')->write(json_encode($base->getCadastroCPF($cpf)));        
     } catch (Exception $ex) {
-        $cadastro = new CadastroEntity(["CPF" => $cpf]);        
+        $cadastro = new CadastroEntity(["CPF" => $cpf]);
         $response->withStatus(200)->withHeader('Content-Type', 'application/json')->write(json_encode($cadastro));
     }
     return $response;

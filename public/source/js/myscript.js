@@ -191,7 +191,7 @@ $(document).ready(function () {
     
     $('input#cpf').change(function () {
         $(".loading-panel").css('visibility', 'visible');
-		$.ajax({url: "./public/API/cadastros/cpf/" + $(this).val() , success: function(result) {
+		$.ajax({url: "./API/cadastros/cpf/" + $(this).val() , success: function(result) {
 				result = $.parseJSON(result);
             
                 $('#idCadastro').val("");				
