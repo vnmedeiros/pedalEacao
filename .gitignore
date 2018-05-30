@@ -1,0 +1,12 @@
+/vendor
+/build/logs
+/build/coverage
+
+composer.phar
+
+.DS_Store
+
+/.idea
+/_ide_helper.php
+
+.env
