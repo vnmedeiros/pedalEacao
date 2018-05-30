@@ -22,7 +22,7 @@ $app->post('/moip/boleto', function (Request $request, Response $response) use($
         
         $dd= substr(preg_replace("/[^0-9]/", "", $inscricao['celular']), 0, 2);
         $phone = substr(preg_replace("/[^0-9]/", "", $inscricao['celular']), 2, 11);
-        $cpf = preg_replace("/[^0-9]/", "", $inscricao['CPF']);        
+        $cpf = preg_replace("/[^0-9]/", "", $inscricao['CPF']);
         
         $customer = $moip->customers()->setOwnId(uniqid())
             ->setFullname($inscricao['nome'])
@@ -31,26 +31,31 @@ $app->post('/moip/boleto', function (Request $request, Response $response) use($
             ->setTaxDocument($cpf, 'CPF')
             ->setPhone($dd, $phone)
             ->addAddress(Customer::ADDRESS_SHIPPING,
-                $inscricao['logradouro'], 123,
+                $inscricao['logradouro'], 
                 $inscricao['bairro'], $inscricao['cidade'], $inscricao['UF'],
                 preg_replace("/[^0-9]/", "", $inscricao['cep']), 8)
             ->create();
         
-        $descricao = $inscricao['evento'].' ('.$inscricao['descricao'].')';
+        //$descricao = $inscricao['evento'].' ('.$inscricao['descricao'].')';
+        $descricao = $inscricao['evento'];//.' ('.$inscricao['descricao'].')';
         $valor = $inscricao['valor'];
                 
         $order = $moip->orders()->setOwnId(uniqid())
-            ->addItem("$descricao - nº inscrição:$idInscricao", 1, "nº inscrição:$idInscricao", $valor * 100)
+            ->addItem("$descricao - nº inscrição:$idInscricao", 1, $idInscricao, $valor * 100)
             ->setCustomer($customer)
             ->create();
             
         $logo_uri = 'http://dev.pedaleacao.com.br/image/logo1.png';
         $expiration_date = new DateTime();
-        $expiration_date->add(new DateInterval('P3D'));
-        //$instruction_lines = ['INSTRUÇÃO 1', 'INSTRUÇÃO 2', 'INSTRUÇÃO 3'];
-        $instruction_lines = [];
+        $expiration_date->add(new DateInterval('P3D'));                
+        $instruction_lines = [
+            "Atenção,",                                         //First
+            "fique atento à data de vencimento do boleto.",     //Second
+            "Pague em qualquer agencia bancária ou lotérica."   //Third
+        ];
         $payment = $order->payments()
             ->setBoleto($expiration_date, $logo_uri, $instruction_lines)
+            ->setStatementDescriptor("Pedal e Ação")
             ->execute();
         
         $output['sender']['name'] = $inscricao['nome'];
@@ -64,6 +69,24 @@ $app->post('/moip/boleto', function (Request $request, Response $response) use($
         $json = json_encode(array('success' => true, 'response' => $output));
         
         return $response->withStatus(200)->withHeader('Content-Type', 'application/json')->write($json);
+    } catch (Exception $ex) {        
+        echo $e->getMessage();
+        return $response->withStatus(500)->withHeader('Content-Type', 'application/json')->write(json_encode($ex));
+    }
+});
+
+$app->get('/moip/notificacao', function (Request $request, Response $response, $args) use($moip) {
+    try {
+        // Pega o RAW data da requisição
+        $json = file_get_contents('php://input');
+        // Converte os dados recebidos
+        $response = json_decode($json, true);
+
+        if ($response.event == "ORDER.PAID") {
+            $base = new EventoDAO($this->db);
+            $base->InscricaoPaga($response->items[0]->detail);
+        }
+        return $response->withStatus(200)->withHeader('Content-Type', 'application/json')->write('"status":"ok"');
     } catch (Exception $ex) {        
         return $response->withStatus(500)->withHeader('Content-Type', 'application/json')->write(json_encode($ex));
     }

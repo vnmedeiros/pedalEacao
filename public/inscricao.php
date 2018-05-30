@@ -120,6 +120,7 @@
                             <p>
                             <b>Local:</b> Baianópolis - BA <br>
                             <b>Data:</b> 29 de julho 2018 <br>
+                            <b>regulamento:</b> <a href="./docs/desafioDubai/regulamento.pdf" target="_blank" > aqui </a> <br>
                             <b>Categorias:</b>
                                 <ul>
                                     <li>Masculino Elite: 19 anos acima</li>
@@ -138,19 +139,19 @@
 									<li>Turismo Masculino: Masculino 15 anos acima</li>
 									<li>Turismo Feminino: Feminino 15 anos acima</li>
                                 </ul>
-                            <br>
-                            <br>
+                            <br>                            
                             <br>
                             </p>
                             <b>Valor:</b>
                             <p>
-								1º lote <b>R$ 80,00</b> até 24/06/2018.<br />
-								2º lote <b>R$ 90,00</b> de 25/06/2018 á 25/07/2018.<br />
-								3º lote <b>R$ 100,00</b> de 26 á 28/07/2018 até meio dia.<br />
+								1º lote <b>R$ 85,00</b> até 24/06/2018.<br />
+								2º lote <b>R$ 95,00</b> de 25/06/2018 á 25/07/2018.<br />
+								3º lote <b>R$ 105,00</b> de 26 á 28/07/2018 até meio dia.<br />
                             </p><br />
 							<p>
                                 <b style="color:#ff3300;">INSCRIÇÕES FINALIZAM EM 22/07/2018</b> <br />
-								Informações: (77) x xxxx-xxxx
+								Informações: (77) 9 9826-3565 <br>
+                                e-mail: rubenscotegipe@hotmail.com
 							</p>
                             <!-- Trigger the modal with a button -->
                             <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">Fazer Inscrição</button>
