@@ -10,3 +10,5 @@ composer.phar
 /_ide_helper.php
 
 .env
+
+/public/API/index.php
