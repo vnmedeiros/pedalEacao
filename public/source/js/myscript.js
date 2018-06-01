@@ -241,6 +241,18 @@ $(document).ready(function () {
         prevTab($active);
 
     });
+    
+    $('#modalInscritos').on('show.bs.modal', function (e) {
+		$(".loading-panel").css('visibility', 'visible');
+		$.ajax({url: "./API/evento/inscritos/" + idEvento , success: function(result) {
+			$('.tbody_inscritos').empty();
+			$.each($.parseJSON(result), function(i, item) {
+				$('.tbody_inscritos').append(`<tr><td>${item.descricao}</td><td>${item.inscritos}</td><td>--</td></tr>`);
+			});
+			$(".loading-panel").css('visibility', 'hidden');
+		}});
+	});
+	
 });
 
 function preparamentMoip(data) {

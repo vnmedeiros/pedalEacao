@@ -73,6 +73,21 @@ class EventoDAO extends Base
             $results[] = $categoria;
         }
         return $results;
+    }
+    
+    public function getInscritos($idEvento) {        
+        $sql = "SELECT cat.descricao, count(cad_ev.id) as 'inscritos' 
+                FROM evento ev INNER JOIN categoria cat ON cat.id_evento = ev.id INNER join cadastro_evento cad_ev ON cad_ev.id_categoria = cat.id 
+                WHERE ev.id = :id_evento GROUP by cat.descricao";
+		$stmt = $this->db->prepare($sql);
+        $stmt->execute(["id_evento" => $idEvento]);
+        //return $stmt->fetch();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);        
+        /*while($row = $stmt->fetch()) {			
+			$inscrito = ['categoria' => $row[0], 'inscrito' => $row[1]];
+            $results[] = $inscrito;
+        }
+        return $results;*/
 	}
 
     public function inscrever($idCadastro, $idCategoria) {

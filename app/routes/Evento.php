@@ -55,6 +55,13 @@ $app->get('/evento/categorias/{idEvento}', function (Request $request, Response 
     return $response;
 });
 
+$app->get('/evento/inscritos/{idEvento}', function (Request $request, Response $response, $args) {
+	$idEvento = (int)$args['idEvento'];
+    $base = new EventoDAO($this->db);    
+    $response->withStatus(200)->withHeader('Content-Type', 'application/json')->write(json_encode($base->getInscritos($idEvento)));
+    return $response;
+});
+
 function download_page($path){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL,$path);

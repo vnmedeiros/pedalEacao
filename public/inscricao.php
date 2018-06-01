@@ -147,7 +147,7 @@
 								1º lote <b>R$ 85,00</b> até 24/06/2018.<br />
 								2º lote <b>R$ 95,00</b> de 25/06/2018 á 25/07/2018.<br />
 								3º lote <b>R$ 105,00</b> de 26 á 28/07/2018 até meio dia.<br />
-                            </p><br />
+                            </p><br />                            
 							<p>
                                 <b style="color:#ff3300;">INSCRIÇÕES FINALIZAM EM 22/07/2018</b> <br />
 								Informações: (77) 9 9826-3565 <br>
@@ -155,10 +155,41 @@
 							</p>
                             <!-- Trigger the modal with a button -->
                             <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">Fazer Inscrição</button>
+                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalInscritos">Inscritos por categoria</button>
                         </div>                                  
                     </div>
                 </div>
             </div>
+            
+            <div id="modalInscritos" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="loading-panel">
+                        <div class="loading-panel-content">
+                            Aguarde...
+                        </div>
+				    </div>
+				    <div class="modal-content">
+						<div class="modal-body" style="margin:5px; min-height:200px;">
+							<table class="table">
+								<caption>Lista de usuários inscritos</caption>
+								<thead>
+									<tr>
+										<th scope="col">Categoria</th>
+										<th scope="col">Inscritos</th>
+										<th scope="col">Confirmados</th>
+									</tr>
+								</thead>
+								<tbody class="tbody_inscritos">
+								</tbody>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+            
             <?php endif; ?>
             
          
