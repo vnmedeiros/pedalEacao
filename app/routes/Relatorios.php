@@ -6,7 +6,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 $app->get('/relatorio/r1/evento/{id}', function (Request $request, Response $response, $args) {
         $pdf  = null;
         $id = $args['id'];
-        $opcao = (int)$request->getParam('opcao');        
+        $opcao = (int)$request->getParam('opcao');
         
         $base = new RelatorioDAO($this->db);
         $result = "";
@@ -18,7 +18,7 @@ $app->get('/relatorio/r1/evento/{id}', function (Request $request, Response $res
     
         $header = "<table class=\"tbl_header\" width=\"1000\">  
                <tr>  
-                 <td align=\"left\">1º Desafio XCM MTB</td>  
+                 <td align=\"left\">II Desafio Dubai</td>  
                  <td align=\"right\">Gerado em: $data</td>
                </tr>
              </table>"; 
@@ -57,9 +57,9 @@ $app->get('/relatorio/r1/evento/{id}', function (Request $request, Response $res
             $retorno .= "{$reg['UF']};";
             
             if ($opcao == 1) 
-                $retorno .= "Pago<br>";  
+                $retorno .= "Pago<br>";
             else
-                $retorno .= "Não Pago<br>";              
+                $retorno .= "Não Pago<br>";
         endforeach;
         
         $response->withStatus(200)->withHeader('Content-Type', 'application/json')->write($retorno);

@@ -169,14 +169,15 @@
                         </div>
 				    </div>
 				    <div class="modal-content">
-						<div class="modal-body" style="margin:5px; min-height:200px;">
+						<div class="modal-body" style="margin:5px;height: 400px;overflow: scroll;">
 							<table class="table">
 								<caption>Lista de usuários inscritos</caption>
 								<thead>
 									<tr>
 										<th scope="col">Categoria</th>
-										<th scope="col">Inscritos</th>
-										<th scope="col">Confirmados</th>
+										<th scope="col">Nome</th>
+										<th scope="col">Situação</th>
+										<th scope="col">Cidade</th>
 									</tr>
 								</thead>
 								<tbody class="tbody_inscritos">

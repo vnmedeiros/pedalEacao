@@ -6,11 +6,13 @@ use Moip\Moip;
 use Moip\Resource\Customer;
 use Moip\Auth\BasicAuth;
 use Moip\Resource\Orders;
+use Moip\Resource\OrdersList;
+use Moip\Helper\Filters;
 
 $token = 'HBGJK1UQMVLCDFBP1JK74YVXJBUJFXFW';
 $key = 'TBKNXRCSVGYQWNZPYHG9LKGTHGLR4VAYAE6LUU7E';
 
-$moip = new Moip(new BasicAuth($token, $key), Moip::ENDPOINT_SANDBOX);
+$moip = new Moip(new BasicAuth($token, $key), Moip::ENDPOINT_PRODUCTION);
 
 $app->post('/moip/boleto', function (Request $request, Response $response) use($moip) {
     try {
@@ -87,6 +89,31 @@ $app->get('/moip/notificacao', function (Request $request, Response $response, $
             $base->InscricaoPaga($response->items[0]->detail);
         }
         return $response->withStatus(200)->withHeader('Content-Type', 'application/json')->write('"status":"ok"');
+    } catch (Exception $ex) {        
+        return $response->withStatus(500)->withHeader('Content-Type', 'application/json')->write(json_encode($ex));
+    }
+});
+
+$app->get('/moip/updatePagamentos', function (Request $request, Response $response, $args) use($moip) {
+    try {   
+        // Without filters
+        $orders = $moip->orders()->getList();
+        // With filters
+        $filters = new Filters();
+        $filters->greaterThanOrEqual(OrdersList::CREATED_AT, "2018-04-01");
+        $filters->in(OrdersList::PAYMENT_METHOD, ['BOLETO']);
+        $filters->in(OrdersList::STATUS, ['PAID']);        
+        $orders = $moip->orders()->getList(null, $filters);
+        $count = 0;
+        foreach($orders->getOrders() as $ord) {
+            $order = $moip->orders()->get($ord->id);
+            //print_r($order->getItemIterator()->current()->detail);
+            $base = new EventoDAO($this->db);
+            $base->InscricaoPaga($order->getItemIterator()->current()->detail);
+            $count++;
+        }
+        
+        return $response->withStatus(200)->withHeader('Content-Type', 'application/json')->write('"total":"'.$count.'"');
     } catch (Exception $ex) {        
         return $response->withStatus(500)->withHeader('Content-Type', 'application/json')->write(json_encode($ex));
     }
