@@ -97,7 +97,7 @@ class EventoDAO extends Base
 		//		VALUES (:idCadastro, :idCategoria)";
         
         $sql = "INSERT INTO cadastro_evento(id_cadastro, id_categoria) 
-                VALUES (:idCadastro, :idCategoria) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), id_cadastro=:idCadastro, id_categoria=:idCategoria";
+                VALUES (:idCadastro, :idCategoria) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), pago='N', id_cadastro=:idCadastro, id_categoria=:idCategoria";
         
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
@@ -128,6 +128,15 @@ class EventoDAO extends Base
     
     public function InscricaoPaga($idInscricao) {
         $sql = 'update cadastro_evento set pago = "S" where id = :idInscricao';
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute(["idInscricao" => $idInscricao]);
+        if(!$result) {
+            throw new Exception("could not update record");
+        }
+    }
+    
+    public function InscricaoNaoPaga($idInscricao) {
+        $sql = 'update cadastro_evento set pago = "C" where id = :idInscricao';
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute(["idInscricao" => $idInscricao]);
         if(!$result) {

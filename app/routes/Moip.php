@@ -102,7 +102,7 @@ $app->get('/moip/updatePagamentos', function (Request $request, Response $respon
         $filters = new Filters();
         $filters->greaterThanOrEqual(OrdersList::CREATED_AT, "2018-04-01");
         $filters->in(OrdersList::PAYMENT_METHOD, ['BOLETO']);
-        $filters->in(OrdersList::STATUS, ['PAID']);        
+        $filters->in(OrdersList::STATUS, ['PAID']);
         $orders = $moip->orders()->getList(null, $filters);
         $count = 0;
         foreach($orders->getOrders() as $ord) {
@@ -114,7 +114,49 @@ $app->get('/moip/updatePagamentos', function (Request $request, Response $respon
         }
         
         return $response->withStatus(200)->withHeader('Content-Type', 'application/json')->write('"total":"'.$count.'"');
-    } catch (Exception $ex) {        
+    } catch (Exception $ex) {
         return $response->withStatus(500)->withHeader('Content-Type', 'application/json')->write(json_encode($ex));
     }
 });
+
+$app->get('/moip/updatePagamentos2', function (Request $request, Response $response, $args) use($moip) {
+    try {   
+        // Without filters
+        $orders = $moip->orders()->getList();
+        
+        // With filters no_paid
+        $filters_nopaid = new Filters();
+        $filters_nopaid->greaterThanOrEqual(OrdersList::CREATED_AT, "2018-04-01");
+        $filters_nopaid->in(OrdersList::PAYMENT_METHOD, ['BOLETO']);
+        $filters_nopaid->in(OrdersList::STATUS, ['NOT_PAID']);
+        $orders = $moip->orders()->getList(null, $filters_nopaid);
+        $count_nopaid = 0;
+        foreach($orders->getOrders() as $ord) {
+            $order = $moip->orders()->get($ord->id);
+            //print_r($order->getItemIterator()->current()->detail);
+            $base = new EventoDAO($this->db);
+            $base->InscricaoNaoPaga($order->getItemIterator()->current()->detail);
+            $count_nopaid++;
+        }
+        
+        // With filters paid
+        $filters_paid = new Filters();
+        $filters_paid->greaterThanOrEqual(OrdersList::CREATED_AT, "2018-04-01");
+        $filters_paid->in(OrdersList::PAYMENT_METHOD, ['BOLETO']);
+        $filters_paid->in(OrdersList::STATUS, ['PAID']);
+        $orders = $moip->orders()->getList(null, $filters_paid);
+        $count_paid = 0;
+        foreach($orders->getOrders() as $ord) {
+            $order = $moip->orders()->get($ord->id);
+            //print_r($order->getItemIterator()->current()->detail);
+            $base = new EventoDAO($this->db);
+            $base->InscricaoPaga($order->getItemIterator()->current()->detail);
+            $count_paid++;
+        }
+        
+        return $response->withStatus(200)->withHeader('Content-Type', 'application/json')->write('{"total_paid":"'.$count_paid.'","total_nopaid":"'.$count_nopaid.'"}');
+    } catch (Exception $ex) {
+        return $response->withStatus(500)->withHeader('Content-Type', 'application/json')->write(json_encode($ex));
+    }
+});
+

@@ -247,10 +247,16 @@ $(document).ready(function () {
 		$.ajax({url: "./API/evento/inscritos/" + idEvento , success: function(result) {
 			$('.tbody_inscritos').empty();
 			$.each($.parseJSON(result), function(i, item) {
-				var situacao = 'inscrito';
-				if (item.pago != 'N')
-					situacao = 'confirmado';
-				$('.tbody_inscritos').append(`<tr><td>${item.descricao}</td><td>${item.nome}</td><td>${situacao}</td><td>${item.cidade}-${item.UF}</td></tr>`);
+                if (item.pago != 'C') {
+                    var situacao = 'inscrito';
+                    if (item.pago == 'S')
+                        situacao = 'confirmado';
+                    $('.tbody_inscritos').append(`<tr><td>${item.descricao}</td><td>${item.nome}</td><td>${situacao}</td><td>${item.cidade}-${item.UF}</td></tr>`);
+                }                
+				//var situacao = 'inscrito';
+				//if (item.pago != 'N')
+				//	situacao = 'confirmado';
+				//$('.tbody_inscritos').append(`<tr><td>${item.descricao}</td><td>${item.nome}</td><td>${situacao}</td><td>${item.cidade}-${item.UF}</td></tr>`);
 			});
 			$(".loading-panel").css('visibility', 'hidden');
 		}});
