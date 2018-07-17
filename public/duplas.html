@@ -11,11 +11,6 @@
         <link rel="stylesheet" type="text/css" href="source/font-awesome-4.5.0/css/font-awesome.css">
         <link rel="stylesheet" type="text/css" href="style/slider.css">
         <link rel="stylesheet" type="text/css" href="style/mystyle.css">
-        
-        <script type="application/javascript">
-            console.log("load...");
-        </script>
-        
     </head>
 
     <body>
@@ -67,6 +62,7 @@
                                 <select name="participante2" class="participante">
                                 </select>
                             </div>
+                            <br />
                             <button class="btn btn-primary">Enviar</button>
                         </form>
                     </div>
@@ -105,5 +101,15 @@
         <script type="text/javascript" src="source/js/isotope.js"></script>        
         <script type="text/javascript" src="source/bootstrap-3.3.6-dist/js/jquery.1.11.js"></script>
         <script type="text/javascript" src="source/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
+        <script type="application/javascript">
+            $.ajax({url: "./API/evento/InscritosDupla/2", success: function(result) {
+                $.each($.parseJSON(result), function(i, item) {
+                    $('.participante').append($('<option>', {
+                        value: item.id,
+                        text: item.nome
+                    }));
+                });
+            }});
+        </script>
     </body>
 </html>

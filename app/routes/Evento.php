@@ -93,3 +93,17 @@ $app->post('/evento/inscricao', function (Request $request, Response $response) 
         return $response->withStatus(500)->withHeader('Content-Type', 'application/json')->write(json_encode($ex));        
     }
 });
+
+$app->get('/evento/InscritosDupla/{idEvento}', function (Request $request, Response $response, $args) {
+    $idEvento = (int)$args['idEvento'];
+    $base = new EventoDAO($this->db);
+    $response->withStatus(200)->withHeader('Content-Type', 'application/json')->write(json_encode($base->getInscritosDupla($idEvento)));
+    return $response;
+});
+
+$app->post('/evento/duplas/', function (Request $request, Response $response) {
+    $idEvento = (int)$args['idEvento'];
+    $base = new EventoDAO($this->db);
+    $response->withStatus(200)->withHeader('Content-Type', 'application/json')->write(json_encode($base->getInscritosDupla($idEvento)));
+    return $response;
+});

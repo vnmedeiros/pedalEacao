@@ -144,17 +144,14 @@ class EventoDAO extends Base
         }
     }
     
-    public function getInscritosDupla( ) {
+    public function getInscritosDupla( $idEvento ) {
         $sql = "SELECT cad.nome, cat.id, cat.descricao 
                 FROM cadastro_evento cad_ev INNER JOIN cadastro cad ON cad_ev.id_cadastro = cad.id
                                             INNER JOIN categoria cat ON cad_ev.id_categoria = cat.id
-                WHERE cat.id IN (28,29) and cad_ev.pago = 'S';";
-        $stmt = $this->db->query($sql);
-        $results = [];
-        while($row = $stmt->fetch()) {
-            $evento = new EventoEntity($row);
-            $results[] = $evento;
-        }
-        return $results;
+                WHERE cat.id IN (28,29) and cad_ev.pago = 'S' and cat.id_evento =  :id_evento";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(["id_evento" => $idEvento]);
+        //return $stmt->fetch();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
