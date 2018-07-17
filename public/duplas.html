@@ -67,6 +67,17 @@
                         </form>
                     </div>
                 </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-5 col-md-offset-3 costumcol colborder1">
+                    <table id=#tableDupla>
+                        <tr>
+                            <th>Participante-1</th>
+                            <th>Participante-2</th>
+                        </tr>
+                    </table>
+                    </div>
+                </div>
             </div>
         
             <!-- ______________________________________________________Bottom Menu ______________________________-->
@@ -89,7 +100,7 @@
                     <a href="#"><i class="fa fa-google-plus"></i></a>
                     <a href="#"><i class="fa fa-pinterest"></i></a>
                 </div>
-                    <div class="footer">                        
+                    <div class="footer">
                         <div class="atisda">
                              Desenvolvido por <a href="https://www.facebook.com/viniciusnmedeiros">Vinicius Nunes </a> 
                         </div>
@@ -110,6 +121,30 @@
                     }));
                 });
             }});
+            
+            function getDuplas( ) {
+                $.ajax({url: "./API/evento/duplas/2", success: function(result) {
+                    $.each($.parseJSON(result), function(i, item) {
+                        var tr = "<tr><td>" + item.participante_1 + "</td><td>" + item.participante_2 + "</td></tr>";
+                        $('#tableDupla').append(tr);
+                    });
+                }});
+            }
+            
+            $('form[data-async]#form-cadastroDupla').on('submit', function(event) {
+                var $form = $(this);
+                $(".loading-panel").css('visibility', 'visible');
+                $.ajax({
+                    type: $form.attr('method'),
+                    url: $form.attr('action'),
+                    data: $form.serialize(),
+                    success: getDuplas( )
+                });
+                event.preventDefault();
+            });
+            
+            getDuplas();
+            
         </script>
     </body>
 </html>

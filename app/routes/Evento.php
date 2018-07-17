@@ -101,9 +101,24 @@ $app->get('/evento/InscritosDupla/{idEvento}', function (Request $request, Respo
     return $response;
 });
 
-$app->post('/evento/duplas/', function (Request $request, Response $response) {
+$app->get('/evento/duplas/{idEvento}', function (Request $request, Response $response, $args) {
     $idEvento = (int)$args['idEvento'];
     $base = new EventoDAO($this->db);
-    $response->withStatus(200)->withHeader('Content-Type', 'application/json')->write(json_encode($base->getInscritosDupla($idEvento)));
-    return $response;
+    $response->withStatus(200)->withHeader('Content-Type', 'application/json')->write(json_encode($base->getDupla($idEvento)));
+    return $response;    
+});
+
+$app->post('/evento/duplas', function (Request $request, Response $response) {
+    try {
+        $data = $request->getParsedBody();
+        $participante1 = filter_var($data['participante1'], FILTER_SANITIZE_STRING);
+        $participante2 = filter_var($data['participante2'], FILTER_SANITIZE_STRING);
+        //$participante1 = (int)$args['participante1'];
+        //$participante2 = (int)$args['participante2'];
+        $base = new EventoDAO($this->db);
+        $response->withStatus(200)->withHeader('Content-Type', 'application/json')->write(json_encode($base->registrarDupla($participante1, $participante2)));
+        return $response;
+    } catch (Exception $ex) {
+        return $response->withStatus(500)->withHeader('Content-Type', 'application/json')->write(json_encode($ex));        
+    }
 });

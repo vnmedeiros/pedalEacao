@@ -154,4 +154,21 @@ class EventoDAO extends Base
         //return $stmt->fetch();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+    public function registrarDupla( $id_1, $id_2 ) {
+        $sql = "INSERT INTO duplas (participante_1, participante_2) VALUES (:id_1, :id_2)";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute(["id_1" => $id_1, "id_2" => $id_2]);
+        if(!$result) {
+            throw new Exception("could not save record");
+        }
+    }
+    
+    public function getDupla( $idEvento ) {
+        $sql = "SELECT * FROM duplas";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 }
