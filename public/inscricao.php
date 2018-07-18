@@ -144,10 +144,16 @@
                             </p>
                             <b>Valor:</b>
                             <p>
-								1º lote <b>R$ 85,00</b> até 24/06/2018.<br />
+                                1º lote <b>R$ 85,00</b>.<br>
+								2º lote <b>R$ 95,00</b>.<br />
+								3º lote <b>R$ 105,00</b>.<br />
+                                <!-- 1º lote <b>R$ 85,00</b> até 24/06/2018<.<br>
 								2º lote <b>R$ 95,00</b> de 25/06/2018 á 25/07/2018.<br />
-								3º lote <b>R$ 105,00</b> de 26 á 28/07/2018 até meio dia.<br />
+								3º lote <b>R$ 105,00</b> de 26 á 28/07/2018 até meio dia.<br /> -->
                             </p><br />                            
+                            <p>
+                                <a href="duplas.html">Registrar Duplas</a>
+                            </p><br />
 							<p>
                                 <b style="color:#ff3300;">INSCRIÇÕES FINALIZAM EM 22/07/2018</b> <br />
 								Informações: (77) 9 9826-3565 <br>

@@ -145,7 +145,7 @@ class EventoDAO extends Base
     }
     
     public function getInscritosDupla( $idEvento ) {
-        $sql = "SELECT cad.nome, cat.id, cat.descricao 
+        $sql = "SELECT cad.nome, cad.id, cat.descricao 
                 FROM cadastro_evento cad_ev INNER JOIN cadastro cad ON cad_ev.id_cadastro = cad.id
                                             INNER JOIN categoria cat ON cad_ev.id_categoria = cat.id
                 WHERE cat.id IN (28,29) and cad_ev.pago = 'S' and cat.id_evento =  :id_evento";
@@ -165,7 +165,7 @@ class EventoDAO extends Base
     }
     
     public function getDupla( $idEvento ) {
-        $sql = "SELECT * FROM duplas";
+        $sql = "SELECT c1.nome as 'participante_1', c2.nome as 'participante_2', duplas.id FROM duplas INNER JOIN cadastro c1 on duplas.participante_1 = c1.id INNER JOIN cadastro c2 on duplas.participante_2 = c2.id";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

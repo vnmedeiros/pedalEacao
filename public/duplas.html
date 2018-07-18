@@ -63,19 +63,27 @@
                                 </select>
                             </div>
                             <br />
-                            <button class="btn btn-primary">Enviar</button>
+                            <button class="btn btn-primary">Registrar</button>
                         </form>
                     </div>
                 </div>
                 <br />
                 <div class="row">
-                    <div class="col-md-5 col-md-offset-3 costumcol colborder1">
-                    <table id=#tableDupla>
-                        <tr>
-                            <th>Participante-1</th>
-                            <th>Participante-2</th>
-                        </tr>
+                    <div class="col-md-5 col-md-offset-4 costumcol colborder1">
+                    <table id="tableDupla" class="table table-striped table-bordered">
+                        <caption>Lista de duplas registradas:</caption>
+                        <thead>
+                            <tr>
+                                <th>Participante-1</th>
+                                <th>Participante-2</th>
+                            </tr>
+                        </thead>
                     </table>
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col-md-5 col-md-offset-4">
+                        * Esse registro será utilizado para auxiliar a administração da prova, qualquer alteração entre em contato com o responsável da prova.
                     </div>
                 </div>
             </div>
@@ -146,5 +154,9 @@
             getDuplas();
             
         </script>
+        
+        <style>
+            
+        </style>
     </body>
 </html>
