@@ -8,6 +8,7 @@ use Moip\Auth\BasicAuth;
 use Moip\Resource\Orders;
 use Moip\Resource\OrdersList;
 use Moip\Helper\Filters;
+use Moip\Helper\Pagination;
 
 $token = 'HBGJK1UQMVLCDFBP1JK74YVXJBUJFXFW';
 $key = 'TBKNXRCSVGYQWNZPYHG9LKGTHGLR4VAYAE6LUU7E';
@@ -103,7 +104,7 @@ $app->get('/moip/updatePagamentos', function (Request $request, Response $respon
         $filters->greaterThanOrEqual(OrdersList::CREATED_AT, "2018-04-01");
         $filters->in(OrdersList::PAYMENT_METHOD, ['BOLETO']);
         $filters->in(OrdersList::STATUS, ['PAID']);
-        $orders = $moip->orders()->getList(null, $filters);
+        $orders = $moip->orders()->getList(new Pagination(500,0), $filters);
         $count = 0;
         foreach($orders->getOrders() as $ord) {
             $order = $moip->orders()->get($ord->id);
@@ -129,7 +130,7 @@ $app->get('/moip/updatePagamentos2', function (Request $request, Response $respo
         $filters_nopaid->greaterThanOrEqual(OrdersList::CREATED_AT, "2018-04-01");
         $filters_nopaid->in(OrdersList::PAYMENT_METHOD, ['BOLETO']);
         $filters_nopaid->in(OrdersList::STATUS, ['NOT_PAID']);
-        $orders = $moip->orders()->getList(null, $filters_nopaid);
+        $orders = $moip->orders()->getList(new Pagination(500,0), $filters_nopaid);
         $count_nopaid = 0;
         foreach($orders->getOrders() as $ord) {
             $order = $moip->orders()->get($ord->id);
@@ -144,7 +145,7 @@ $app->get('/moip/updatePagamentos2', function (Request $request, Response $respo
         $filters_paid->greaterThanOrEqual(OrdersList::CREATED_AT, "2018-04-01");
         $filters_paid->in(OrdersList::PAYMENT_METHOD, ['BOLETO']);
         $filters_paid->in(OrdersList::STATUS, ['PAID']);
-        $orders = $moip->orders()->getList(null, $filters_paid);
+        $orders = $moip->orders()->getList(new Pagination(500,0), $filters_paid);
         $count_paid = 0;
         foreach($orders->getOrders() as $ord) {
             $order = $moip->orders()->get($ord->id);

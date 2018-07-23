@@ -15,7 +15,7 @@ $app->get('/relatorio/r1/evento/{id}', function (Request $request, Response $res
         else 
             $result = $base->REL1($id,'N');
         $data = date('j/m/Y'); 
-    
+        
         $header = "<table class=\"tbl_header\" width=\"1000\">  
                <tr>  
                  <td align=\"left\">II Desafio Dubai</td>  
@@ -34,33 +34,90 @@ $app->get('/relatorio/r1/evento/{id}', function (Request $request, Response $res
         $retorno .= "<h2 style=\"text-align:center\"></h2>";   
         
             
-        $retorno .= "<table border='1' style='border-collapse: collapse; border: 0px solid black;' width='1000' align='center' cellpadding='5'>";               
+        //$retorno .= "<table border='1' style='border-collapse: collapse; border: 0px solid black;' width='1000' align='center' cellpadding='5'>";               
         
         $id = -1;
-        $retorno .= "Nome;
-                    Categoria;
-                    CPF;
-                    telefone;
-                    bairro;
-                    cep;
-                    cidade;
-                    UF;
-                    Pago<br>";
-        foreach ($result as $reg):            
-            $retorno .= ucfirst(strtolower($reg['nome'])).";";
-            $retorno .= "{$reg['categoria']};";
-            $retorno .= "{$reg['CPF']};";
-            $retorno .= "{$reg['celular']};";              
-            $retorno .= "{$reg['bairro']};";  
-            $retorno .= "{$reg['cep']};";  
-            $retorno .= "{$reg['cidade']};";  
-            $retorno .= "{$reg['UF']};";
+        $catAux = "";
+        $first = true;
+        //$retorno .= "<tr>
+        //            <th>Nome</th>
+        //            <th>Categoria</th>
+        //            <th>CPF</th>
+        //            <th>telefone</th>
+        //            <th>bairro</th>
+        //            <th>cep</th>
+        //            <th>cidade</th>
+        //            <th>UF</th>
+        //            <th>Status</th></tr>";
+        $retorno = "";
+        foreach ($result as $reg):
+            if($catAux != $reg['categoria']) {
+                $catAux = $reg['categoria'];
+                if(!$first) {
+                    $retorno .=  "</table>";
+                }
+                $retorno .= "<br /><b>Categoria:{$catAux}</b><br /><br /><table border='1' style='border-collapse: collapse; border: 0px solid black;' width='1000' align='center' cellpadding='5'>";
+                $retorno .= "<tr>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                    <th>CPF</th>
+                    <th>telefone</th>
+                    <th>bairro</th>
+                    <th>cep</th>
+                    <th>cidade</th>
+                    <th>UF</th>
+                    <th>Status</th></tr>";
+                $first = false;
+                
+            }
+            $retorno .= "<tr><td>". ucfirst(strtolower($reg['nome']))."</td>";
+            $retorno .= "<td>{$reg['categoria']}</td>";
+            $retorno .= "<td>" . substr($reg['CPF'],0,3) . "...</td>";
+            $retorno .= "<td>{$reg['celular']}</td>";
+            $retorno .= "<td>{$reg['bairro']}</td>";
+            $retorno .= "<td>{$reg['cep']}</td>";
+            $retorno .= "<td>{$reg['cidade']}</td>";
+            $retorno .= "<td>{$reg['UF']}</td>";
             
             if ($opcao == 1) 
-                $retorno .= "Pago<br>";
+                $retorno .= "<td>Pago</td></tr>";
             else
-                $retorno .= "Não Pago<br>";
+                $retorno .= "<td>Não Pago</td></tr>";
         endforeach;
+        $retorno .= "</table>";
         
-        $response->withStatus(200)->withHeader('Content-Type', 'application/json')->write($retorno);
+        $css = "
+                @media print {
+                    
+                    @page {
+                        size:  auto;
+                        margin: 0mm;
+                    }
+                    
+                    body {
+                        font-size: 1em;
+                        margin-top: 2cm;
+                        margin-right: 2cm;
+                        margin-bottom: 1.5cm;
+                        margin-left: 2cm
+                    }
+                    
+                    table {
+                        margin-top: 0.5cm;
+                        page-break-after: always;
+                        display: block;
+                    }
+                    
+                    button {
+                        display: none;
+                    }
+                }
+                
+                table {
+                    margin-bottom: 2cm;
+                }
+                ";
+        
+        $body = "<html><style>{$css}</style><body><button onclick='window.print();'>Imprimir</button>{$retorno}</body></html>";
+        $response->withStatus(200)->withHeader('Content-Type', 'text/html')->write($body);
 });
