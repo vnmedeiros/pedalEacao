@@ -76,6 +76,7 @@
                             <tr>
                                 <th>Participante-1</th>
                                 <th>Participante-2</th>
+                                <th>Categoria</th>
                             </tr>
                         </thead>
                     </table>
@@ -133,7 +134,7 @@
             function getDuplas( ) {
                 $.ajax({url: "./API/evento/duplas/2", success: function(result) {
                     $.each($.parseJSON(result), function(i, item) {
-                        var tr = "<tr><td>" + item.participante_1 + "</td><td>" + item.participante_2 + "</td></tr>";
+                        var tr = "<tr><td>" + item.participante_1 + "</td><td>" + item.participante_2 + "</td><td>" + item.descricao + "</td></tr>";
                         $('#tableDupla').append(tr);
                     });
                 }});

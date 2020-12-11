@@ -58,6 +58,7 @@ $app->get('/relatorio/r1/evento/{id}', function (Request $request, Response $res
                 }
                 $retorno .= "<br /><b>Categoria:{$catAux}</b><br /><br /><table border='1' style='border-collapse: collapse; border: 0px solid black;' width='1000' align='center' cellpadding='5'>";
                 $retorno .= "<tr>
+                    <thead>
                     <th>Nome</th>
                     <th>Categoria</th>
                     <th>CPF</th>
@@ -66,7 +67,8 @@ $app->get('/relatorio/r1/evento/{id}', function (Request $request, Response $res
                     <th>cep</th>
                     <th>cidade</th>
                     <th>UF</th>
-                    <th>Status</th></tr>";
+                    <th>Status</th></tr>
+                    </thead>";                    
                 $first = false;
                 
             }
@@ -107,6 +109,8 @@ $app->get('/relatorio/r1/evento/{id}', function (Request $request, Response $res
                         page-break-after: always;
                         display: block;
                     }
+                    
+                    thead {display: table-header-group;}
                     
                     button {
                         display: none;

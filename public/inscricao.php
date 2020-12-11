@@ -152,237 +152,237 @@
 								3º lote <b>R$ 105,00</b> de 26 á 28/07/2018 até meio dia.<br /> -->
                             </p><br />                            
                             <p>
-                                <a href="duplas.html">Registrar Duplas</a>
+                                <a href="duplas.html">Registrar Duplas</a> <br />
+                                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalInscritos">Inscritos por categoria</button>
                             </p><br />
 							<p>
-                                <b style="color:#ff3300;">INSCRIÇÕES FINALIZAM EM 22/07/2018</b> <br />
+                                <b style="color:#ff3300;">INSCRIÇÕES SOMENTE PRESENCIAL</b> <br />
 								Informações: (77) 9 9826-3565 <br>
                                 e-mail: rubenscotegipe@hotmail.com
 							</p>
-                            <!-- Trigger the modal with a button -->
-                            <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">Fazer Inscrição</button>
-                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalInscritos">Inscritos por categoria</button>
+                            <!-- Trigger the modal with a button -->                            
+                            
                         </div>                                  
                     </div>
                 </div>
             </div>
+            <?php endif; ?>
             
-            <div id="modalInscritos" class="modal fade" role="dialog">
-				<div class="modal-dialog">
-					<div class="loading-panel">
+            <?php if ($evento == 3): ?>
+            <div class="feturedsection">
+                <h1 class="text-center">CORRIDA FEMININA DA ACADEMIA BETTER LIFE</h1>
+            </div>  
+            <div class="featurecontant" style="margin-top: 2%;">
+                <div class="row firstrow">   
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 costumcol colborder1 img1colon">
+                        <img src="image/events/evento_goianira121314.jpg" />
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 costumcol colborder1">
+                        <div style="margin-left: 25px;">
+                            <h3 class="text-center">CORRIDA FEMININA DA ACADEMIA BETTER LIFE</h3>
+                            <p>
+                            <b>Local:</b> Goianira GO <br>
+                            <b>Data:</b> 09 de junho 2019 <br>
+                            <b>regulamento:</b> <a href="./docs/betterLife.jpeg" target="_blank" > aqui </a> <br>
+                            <b>Categorias:</b>
+                                <ul>
+                                    <li>15 a 29 anos</li>
+                                    <li>30 a 39 anos</li>
+                                    <li>40 a 49 anos</li>
+                                    <li>50 anos acima</li>
+                                </ul>
+                            <br>                            
+                            <br>
+                            </p>
+                            <b>Valor:</b>
+                            <p>
+                                <b>R$ 40,00</b> ( Quarenta Reais), com direito a camisa.<br>
+                            </p><br />                            
+                            <b>Contato:</b>
+                            <p>
+                                (62) 99334-2587 – Manoel de Oliveira <br>
+                                (62) 99206-4923 – Pollyana <br>
+							</p>
+							<b>Dados para pagamento:</b>
+							<p>
+								Caixa Agência: 3725, OP 013, Conta Poupança 8940-2, Miguel Vitor Vieira Silva. <br /> <br />
+								O comprovante deverá ser encaminhado para Pollyana com a identificação da atleta inscrita.
+							</p><br />
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                              Inscrição
+                            </button>
+                            <span class="mensagem_sucesso" style="color: green;" ></span>
+                            <span class="mensagem_falha" style="color: red;" ></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="loading-panel">
                         <div class="loading-panel-content">
                             Aguarde...
                         </div>
-				    </div>
-				    <div class="modal-content">
-						<div class="modal-body" style="margin:5px;height: 400px;overflow: scroll;">
-							<table class="table">
-								<caption>Lista de usuários inscritos</caption>
-								<thead>
-									<tr>
-										<th scope="col">Categoria</th>
-										<th scope="col">Nome</th>
-										<th scope="col">Situação</th>
-										<th scope="col">Cidade</th>
-									</tr>
-								</thead>
-								<tbody class="tbody_inscritos">
-								</tbody>
-							</table>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-						</div>
-					</div>
-				</div>
-			</div>
+                    </div>
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-body" style="margin:5px; min-height:400px;">
+                            <div class="wizard">
+                                <div class="wizard-inner">
+                                    <div class="connecting-line"></div>
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active">
+                                            <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Cadastro">
+                                                <span class="round-tab">
+                                                    <i class="glyphicon glyphicon-user"></i>
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                        <li role="presentation" class="disabled">
+                                            <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Evento">
+                                                <span class="round-tab">
+                                                    <i class="glyphicon glyphicon-calendar"></i>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="tab-content">
+                                <div class="tab-pane active" role="tabpanel" id="step1">
+                                    <form method="POST" data-async action="./API/cadastro" class="form-horizontal formIscricao" id="form-cadastro">
+                                        <input type="hidden" id="idCadastro" name="id" value="-1">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2" for="cpf">CPF:</label>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control cpf" id="cpf" placeholder="000.000.000-00" name="cpf" >
+                                            </div>
+
+                                            <label class="control-label col-sm-3" for="nascimento">Data de Nascimento:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control date" id="nascimento" placeholder="00/00/0000" name="nascimento" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2" for="nome">Nome:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="nome" name="nome" disabled>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2" for="email">Email:</label>
+                                            <div class="col-sm-8">
+                                                <input type="email" class="form-control" id="email" placeholder="email@email.com.br" name="email" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2" for="celular">Celular:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control phone" id="celular" placeholder="(00) 00000-0000" name="celular" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2" for="logradouro">Logradouro:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="logradouro" name="logradouro"  rows="2" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2" for="bairro">Bairro:</label>
+                                            <div class="col-sm-5">
+                                                <input type="text" class="form-control" id="bairro" name="bairro" disabled>
+                                            </div>
+                                            
+                                            <label class="control-label col-sm-1" for="cep">CEP:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control cep" id="cep" name="cep" disabled>
+                                            </div>									
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2" for="cidade">Cidade:</label>
+                                            <div class="col-sm-5">
+                                                <input type="text" class="form-control" id="cidade" name="cidade" disabled>
+                                            </div>
+                                        
+                                            <label class="control-label col-sm-1" for="UF">UF:</label>
+                                            <div class="col-sm-3">
+                                                <select  class="form-control" id="UF" name="UF" disabled>
+                                                    <option value="BA">BA</option>
+                                                    <option value="AC">AC</option>
+                                                    <option value="AL">AL</option>
+                                                    <option value="AM">AM</option>
+                                                    <option value="AP">AP</option>
+                                                    <option value="CE">CE</option>
+                                                    <option value="DF">DF</option>
+                                                    <option value="ES">ES</option>
+                                                    <option value="GO">GO</option>
+                                                    <option value="MA">MA</option>
+                                                    <option value="MG">MG</option>
+                                                    <option value="MS">MS</option>
+                                                    <option value="MT">MT</option>
+                                                    <option value="PA">PA</option>
+                                                    <option value="PB">PB</option>
+                                                    <option value="PE">PE</option>
+                                                    <option value="PI">PI</option>
+                                                    <option value="PR">PR</option>
+                                                    <option value="RJ">RJ</option>
+                                                    <option value="RN">RN</option>
+                                                    <option value="RS">RS</option>
+                                                    <option value="RO">RO</option>
+                                                    <option value="RR">RR</option>
+                                                    <option value="SC">SC</option>
+                                                    <option value="SE">SE</option>
+                                                    <option value="SP">SP</option>
+                                                    <option value="TO">TO</option>
+                                                 </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary" form="form-cadastro">Avançar >></button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="tab-pane" role="tabpanel" id="step2">
+                                    <form method="POST" data-async action="./API/evento/inscricao" class="form-horizontal formIscricaoCategoria" id="form-cadastroCategoria2">
+                                        <div style="min-height:200px;">
+                                            <label for="selectCategoria">Selecionar a categoria desejada:</label>
+                                            <select class="form-control" id="selectCategoria" name="selectCategoria">
+                                            </select>
+                                            <input type="hidden" name="idEvento" id="idEvento_cat">
+                                            <input type="hidden" name="idCadastro" id="idCadastro_cat" >
+                                        </div>
+                                        <ul class="list-inline pull-right">
+                                            <li><button type="button" class="btn btn-default prev-step">Retornar</button></li>
+                                            <li><button type="submit" class="btn btn-primary next-step" from="form-finalizarIscricao">Finalizar Inscriçao</button></li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
             <?php endif; ?>
             
          
             <!-- Modal -->
-			<div id="myModal" class="modal fade" role="dialog">
-				<div class="modal-dialog">
-                    <div class="loading-panel">
-                        <div class="loading-panel-content">
-                            Aguarde...
-                        </div>
-				    </div>
-					<!-- Modal content-->
-					<div class="modal-content">
-						<div class="modal-body" style="margin:5px; min-height:400px;">
-							<div class="wizard">
-								<div class="wizard-inner">
-									<div class="connecting-line"></div>
-										<ul class="nav nav-tabs" role="tablist">
-											<li role="presentation" class="active">
-												<a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Cadastro">
-													<span class="round-tab">
-														<i class="glyphicon glyphicon-user"></i>
-													</span>
-												</a>
-											</li>
-
-											<li role="presentation" class="disabled">
-												<a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Evento">
-													<span class="round-tab">
-														<i class="glyphicon glyphicon-calendar"></i>
-													</span>
-												</a>
-											</li>
-											
-											<li role="presentation" class="disabled">
-												<a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Pagamento">
-													<span class="round-tab">
-														<i class="glyphicon glyphicon-usd"></i>
-													</span>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-
-								<div class="tab-content">
-									<div class="tab-pane active" role="tabpanel" id="step1">
-										<form method="POST" data-async action="./API/cadastro" class="form-horizontal formIscricao" id="form-cadastro">
-											<input type="hidden" id="idCadastro" name="id" value="-1">
-											<div class="form-group">
-												<label class="control-label col-sm-2" for="cpf">CPF:</label>
-												<div class="col-sm-3">
-													<input type="text" class="form-control cpf" id="cpf" placeholder="000.000.000-00" name="cpf" >
-												</div>
-											
-												<label class="control-label col-sm-3" for="nascimento">Data de Nascimento:</label>
-												<div class="col-sm-4">
-													<input type="text" class="form-control date" id="nascimento" placeholder="00/00/0000" name="nascimento" disabled>
-												</div>
-											</div>
-											
-											<div class="form-group">
-												<label class="control-label col-sm-2" for="nome">Nome:</label>
-												<div class="col-sm-8">
-													<input type="text" class="form-control" id="nome" name="nome" disabled>
-												</div>
-											</div>
-											
-											<div class="form-group">
-												<label class="control-label col-sm-2" for="email">Email:</label>
-												<div class="col-sm-8">
-													<input type="email" class="form-control" id="email" placeholder="email@email.com.br" name="email" disabled>
-												</div>
-											</div>
-																			
-											<div class="form-group">
-												<label class="control-label col-sm-2" for="celular">Celular:</label>
-												<div class="col-sm-10">
-													<input type="text" class="form-control phone" id="celular" placeholder="(00) 00000-0000" name="celular" disabled>
-												</div>
-											</div>							
-																			
-											<div class="form-group">
-												<label class="control-label col-sm-2" for="logradouro">Logradouro:</label>
-												<div class="col-sm-10">
-													<input type="text" class="form-control" id="logradouro" name="logradouro"  rows="2" disabled>
-												</div>
-											</div>								
-											
-											<div class="form-group">
-												<label class="control-label col-sm-2" for="bairro">Bairro:</label>
-												<div class="col-sm-5">
-													<input type="text" class="form-control" id="bairro" name="bairro" disabled>
-												</div>
-												
-												<label class="control-label col-sm-1" for="cep">CEP:</label>
-												<div class="col-sm-4">
-													<input type="text" class="form-control cep" id="cep" name="cep" disabled>
-												</div>									
-											</div>
-											
-											<div class="form-group">
-												<label class="control-label col-sm-2" for="cidade">Cidade:</label>
-												<div class="col-sm-5">
-													<input type="text" class="form-control" id="cidade" name="cidade" disabled>
-												</div>
-											
-												<label class="control-label col-sm-1" for="UF">UF:</label>
-												<div class="col-sm-3">
-													<select  class="form-control" id="UF" name="UF" disabled>
-														<option value="BA">BA</option>
-														<option value="AC">AC</option>
-														<option value="AL">AL</option>
-														<option value="AM">AM</option>
-														<option value="AP">AP</option>
-														<option value="CE">CE</option>
-														<option value="DF">DF</option>
-														<option value="ES">ES</option>
-														<option value="GO">GO</option>
-														<option value="MA">MA</option>
-														<option value="MG">MG</option>
-														<option value="MS">MS</option>
-														<option value="MT">MT</option>
-														<option value="PA">PA</option>
-														<option value="PB">PB</option>
-														<option value="PE">PE</option>
-														<option value="PI">PI</option>
-														<option value="PR">PR</option>
-														<option value="RJ">RJ</option>
-														<option value="RN">RN</option>
-														<option value="RS">RS</option>
-														<option value="RO">RO</option>
-														<option value="RR">RR</option>
-														<option value="SC">SC</option>
-														<option value="SE">SE</option>
-														<option value="SP">SP</option>
-														<option value="TO">TO</option>
-													 </select>												
-<!--													<input type="text" class="form-control" id="UF" name="UF" disabled>-->
-												</div>
-											</div>
-											
-											<div class="form-group">
-												<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-												<button type="submit" class="btn btn-primary" form="form-cadastro">Avançar >></button>
-											</div>
-										</form>
-									</div>
-									<div class="tab-pane" role="tabpanel" id="step2">
-										<form method="POST" data-async action="./API/evento/inscricao" class="form-horizontal formIscricaoCategoria" id="form-cadastroCategoria">
-											<div style="min-height:200px;">
-												<label for="selectCategoria">Selecionar a categoria desejada:</label>
-												<select class="form-control" id="selectCategoria" name="selectCategoria">
-												</select>
-												<input type="hidden" name="idEvento" id="idEvento_cat">
-												<input type="hidden" name="idCadastro" id="idCadastro_cat" >
-											</div>
-											<ul class="list-inline pull-right">
-												<li><button type="button" class="btn btn-default prev-step">Retornar</button></li>
-												<li><button type="submit" class="btn btn-primary next-step" form="form-cadastroCategoria">Avançar</button></li>
-											</ul>
-										</form>
-									</div>
-									
-									<div class="tab-pane" role="tabpanel" id="step3">
-										<h3>Forma de pagamento!</h3>
-                                        <!--<form method="POST" data-async action="./API/finalizarInscricao" class="form-horizontal formFinalizarIscricao" id="form-finalizarIscricao">-->
-                                        <form method="POST" data-async action="./API/moip/boleto" class="form-horizontal formFinalizarIscricao" id="form-finalizarIscricao">
-                                            <div id="conteudoFormFinalizarInscricao">
-                                                <div id="formaPagamento">
-                                                </div>
-                                                <input type="hidden" name="idInscricao" id="idInscricao">
-                                                <input type="hidden" name="SenderHash" id="SenderHash">
-                                                <ul class="list-inline pull-right">
-                                                    <li><button type="button" class="btn btn-default prev-step">Retornar</button></li>
-                                                    <li><button type="submit" class="btn btn-primary next-step" from="form-finalizarIscricao">Finalizar Inscriçao</button></li>
-                                                </ul>
-                                            </div>
-                                        </form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
             
             
             <!-- ______________________________________________________Bottom Menu ______________________________-->
@@ -427,4 +427,29 @@
         <!--<script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>-->
 
     </body>
+    <script>
+        $('form[data-async]#form-cadastroCategoria2').on('submit', function(event) {
+            var $form = $(this);
+            $(".loading-panel").css('visibility', 'visible');
+            $.ajax({
+                type: $form.attr('method'),
+                url: $form.attr('action'),
+                data: $form.serialize(),
+                success: function(data, status) {
+                    if (data.success) {
+                        $('#myModal').modal('hide');
+                        $('.mensagem_sucesso').html("Inscrição realizada com sucesso.");
+                        //var $active = $('.wizard .nav-tabs li.active');
+                        //$active.next().removeClass('disabled');
+                        //preparamentPagSeguro(data);
+                        //$('#idInscricao').val(data.inscricao.id);
+                    } else {
+                        $('#myModal').modal('hide');
+                        $('.mensagem_falha').html("Falha ao realizar inscrição.");
+                    }
+                }
+            });
+            event.preventDefault();        
+        });
+    </script>
 </html>
